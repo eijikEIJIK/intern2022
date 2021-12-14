@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="welcome">
+    <h1 class="title">microhr</h1>
+    <p class="subtitle">最小限のコードで採用を！</p>
+    <a class="btn btn-primary" href="{% url 'work_new' %}">求人を登録する</a>
+</div>
+{% if works%}
+<table class="table">
+    <thead>
+        <tr>
+            <th>タイトル</th>
+            <th>会社名</th>
+            <th>お給料</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for work in works %}
+        <tr>
+            <th><a href="{% url 'work_detail' work.id %}">{{ work.title }}</a></th>
+            <th>{{ work.company.username }}</th>
+            <th>{{ work.salary_min }}~{{ work.salary_max }}</th>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+求人は登録されていません。
+{% endif%}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>microhr</title>
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% block extraheader%}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand flex-md-row navbar-dark bg-dark">
+            <div class="container justify-content-between">
+                <a href="/" class="navbar-brand">HOME</a>
+                <a href="/" class="navbar-brand">求人登録</a>
+                <a href="/" class="navbar-brand">求人検索</a>
+                <a href="/" class="navbar-brand">応募管理</a>
+            </div>
+        </nav>
+        <main>
+            <div class="container">
+                {% block main %}{% endblock %}
+            </div>
+        </main>
+    </body>
+</html>
