@@ -11,7 +11,7 @@
     </tr>
     <tr>
         <td>給与</td>
-        <td>{{ work.salary_min | intcomma }} ~ {{ work.salary_max | intcomma }}円</td>
+        <td>{{ work.salary_min | intcomma }}万円 ~ {{ work.salary_max | intcomma }}万円</td>
     </tr>
     <tr>
         <td></td>
@@ -28,4 +28,12 @@
         <td>{{work.updated_at | date:"Y年n月j日 h:i:s"}}</td>
     </tr>
 </table>
+
+<div>
+    {% if user.is_authenticated and user.is_company and user == work.company %}
+    <a class="btn btn-primary" href="{% url 'work_edit' work.id %}">編集する</a>
+    {% elif not user.is_company %}
+    <a class="btn btn-primary">応募する</a>    
+    {% endif %}
+</div>    
 {% endblock %}

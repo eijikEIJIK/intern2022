@@ -1,6 +1,12 @@
 nav.bg-dark {
     background-color: #DD3311 !important;
 } 
+
+body.company nav.bg-dark {
+    background-color: #5EC9C7 !important;
+} 
+
+
 main {
     padding: 2rem 0;
 }
@@ -12,4 +18,8 @@ main {
     align-items: center;
     display: flex;
     flex-direction: column;
+}
+
+body.company .welcome {
+    background-color: rgba(88, 201, 199, 0.2) ;
 }

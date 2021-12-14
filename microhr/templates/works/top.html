@@ -5,9 +5,8 @@
 <div class="welcome">
     <h1 class="title">microhr</h1>
     <p class="subtitle">最小限のコードで採用を！</p>
-    <a class="btn btn-primary" href="{% url 'work_new' %}">求人を登録する</a>
 </div>
-{% if works%}
+{% if works %}
 <table class="table">
     <thead>
         <tr>
@@ -20,8 +19,8 @@
     {% for work in works %}
         <tr>
             <th><a href="{% url 'work_detail' work.id %}">{{ work.title }}</a></th>
-            <th>{{ work.company.username }}</th>
-            <th>{{ work.salary_min | intcomma}}~{{ work.salary_max | intcomma }}円</th>
+            <th>{{ work.company.name }}</th>
+            <th>{{ work.salary_min | intcomma}}万円~{{ work.salary_max | intcomma }}万円</th>
         </tr>
     {% endfor %}
     </tbody>
