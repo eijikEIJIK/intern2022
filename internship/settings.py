@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'microhr.apps.MicrohrConfig',
+    'django.contrib.humanize',
+ 
+    'microhr.apps.MicrohrConfig',   
     'django_bootstrap5',
     'accounts.apps.AccountsConfig',
 ]
@@ -129,3 +131,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+NUMBER_GROUPING = 3

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block main %}
 <div class="welcome">
@@ -20,7 +21,7 @@
         <tr>
             <th><a href="{% url 'work_detail' work.id %}">{{ work.title }}</a></th>
             <th>{{ work.company.username }}</th>
-            <th>{{ work.salary_min }}~{{ work.salary_max }}</th>
+            <th>{{ work.salary_min | intcomma}}~{{ work.salary_max | intcomma }}円</th>
         </tr>
     {% endfor %}
     </tbody>

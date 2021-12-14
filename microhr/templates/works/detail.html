@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load humanize %}
 
 {% block main %}
 <h1>{{ work.title }}</h1>
@@ -10,7 +11,7 @@
     </tr>
     <tr>
         <td>給与</td>
-        <td>{{ work.salary_min}} ~ {{ work.salary_max }}円</td>
+        <td>{{ work.salary_min | intcomma }} ~ {{ work.salary_max | intcomma }}円</td>
     </tr>
     <tr>
         <td></td>
@@ -20,11 +21,11 @@
     </tr>
     <tr>
         <td>求人登録日</td>
-        <td>{{ work.created_at}}</td>
+        <td>{{ work.created_at | date:"Y年n月j日 h:i:s"}}</td>
     </tr>
     <tr>
         <td>最終更新日</td>
-        <td>{{work.updated_at}}</td>
+        <td>{{work.updated_at | date:"Y年n月j日 h:i:s"}}</td>
     </tr>
 </table>
 {% endblock %}
