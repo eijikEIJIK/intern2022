@@ -7,7 +7,7 @@
 <table class="table">
     <tr>
         <td>会社名</td>
-        <td>{{ work.company.username }}</td>
+        <td>{{ work.company.name }}</td>
     </tr>
     <tr>
         <td>給与</td>
@@ -21,11 +21,11 @@
     </tr>
     <tr>
         <td>求人登録日</td>
-        <td>{{ work.created_at | date:"Y年n月j日 h:i:s"}}</td>
+        <td>{{ work.created_at | date:"Y年n月j日 H:i:s"}}</td>
     </tr>
     <tr>
         <td>最終更新日</td>
-        <td>{{work.updated_at | date:"Y年n月j日 h:i:s"}}</td>
+        <td>{{work.updated_at | date:"Y年n月j日 H:i:s"}}</td>
     </tr>
 </table>
 
