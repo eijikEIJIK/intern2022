@@ -6,11 +6,6 @@ from microhr.models import Work
 from microhr.forms import WorkForm
 from microhr.decorators import company_required
 
-def top(request):
-    works = Work.objects.all()
-    context = {"works": works}
-    return render(request, "works/top.html", context)
-
 @login_required
 @company_required
 def work_new(request):

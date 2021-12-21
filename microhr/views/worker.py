@@ -23,7 +23,7 @@ def resume(request):
         if form.is_valid():
             worker_profile = form.save()
             worker_profile.save()
-            return redirect('top')
+            return redirect('home')
     else:
         form = WorkerProfileForm(instance=request.user.workerprofile)
     return render(request, 'resume/edit.html', {'form': form})
