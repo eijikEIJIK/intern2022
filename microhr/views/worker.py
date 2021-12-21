@@ -1,23 +1,14 @@
 from django.contrib.auth.decorators import login_required
-from django.http.response import HttpResponseForbidden
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from microhr.models import Work
-from microhr.forms import WorkForm, WorkerProfileForm
+from microhr.forms import WorkerProfileForm
 from microhr.decorators import worker_required
 
 @login_required
 @worker_required
 def resume(request):
-    # if request.method == 'POST':        
-    #     form = WorkForm(request.POST, instance=work)
-    #     if form.is_valid():
-    #         work = form.save()
-    #         work.save()
-    #         return redirect(work_detail, work_id=work_id)
-    # else:
-    #    form = WorkForm(instance=work)
-
+    """履歴書表示(GET)・編集(POST)"""
+    
     if request.method == 'POST':
         form = WorkerProfileForm(request.POST, instance=request.user.workerprofile)
         if form.is_valid():
@@ -32,6 +23,8 @@ def resume(request):
 @login_required
 @worker_required
 def apply(request, work_id):
+    """求人へ応募する（未実装）"""
+
     if request.method == 'POST':
         # 多分ここに応募URLにPOSTされたときの処理を書かないといけない
         pass

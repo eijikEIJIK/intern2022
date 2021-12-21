@@ -4,9 +4,8 @@ from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import PermissionDenied
 
 def worker_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
-    '''
-    Decorator for views that checks that the logged in user is a worker.    
-    '''
+    """Decorator for views that checks that the logged in user is a worker."""
+    
     def check(user):
         if user.is_active and user.is_worker:
             return True
@@ -22,9 +21,8 @@ def worker_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, logi
 
 
 def company_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
-    '''
-    Decorator for views that checks that the logged in user is a company
-    '''
+    """Decorator for views that checks that the logged in user is a company"""
+
     def check(user):
         if user.is_active and user.is_company:
             return True

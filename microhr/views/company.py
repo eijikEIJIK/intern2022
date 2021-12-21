@@ -9,6 +9,7 @@ from microhr.decorators import company_required
 @login_required
 @company_required
 def work_new(request):
+    """新規の求人を削除する"""
     if request.method == 'POST':
         form = WorkForm(request.POST)
         if form.is_valid():
@@ -21,12 +22,14 @@ def work_new(request):
     return render(request, 'works/new.html', {'form': form})
 
 def work_detail(request, work_id):
+    """求人を詳細表示する"""
     work = get_object_or_404(Work, pk=work_id)
     return render(request, 'works/detail.html', {'work': work})
 
 @login_required
 @company_required
 def work_edit(request, work_id):
+    """求人を編集する"""
     work = get_object_or_404(Work, pk=work_id)
     if work.company_id != request.user.id:
         return HttpResponseForbidden("この求人は編集できません")
@@ -44,4 +47,5 @@ def work_edit(request, work_id):
 @login_required
 @company_required
 def work_delete(request, work_id):
+    """求人を削除する（未実装）"""
     return HttpResponse("delete work")
