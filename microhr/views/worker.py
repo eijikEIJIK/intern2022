@@ -8,7 +8,7 @@ from microhr.decorators import worker_required
 @worker_required
 def resume(request):
     """履歴書表示(GET)・編集(POST)"""
-    
+
     if request.method == 'POST':
         form = WorkerProfileForm(request.POST, instance=request.user.workerprofile)
         if form.is_valid():
@@ -34,6 +34,6 @@ def apply(request, work_id):
         pass
     
     # 本当はこんな感じになるような気がする
-    # return render(request, 'works/apply.html', {'form': form})
+    # return render(request, 'work/apply.html', {'form': form})
     return HttpResponse("apply work")
 

@@ -19,12 +19,12 @@ def work_new(request):
             return redirect(work_detail, work_id=work.pk)
     else:
         form = WorkForm()     
-    return render(request, 'works/new.html', {'form': form})
+    return render(request, 'work/new.html', {'form': form})
 
 def work_detail(request, work_id):
     """求人を詳細表示する"""
     work = get_object_or_404(Work, pk=work_id)
-    return render(request, 'works/detail.html', {'work': work})
+    return render(request, 'work/detail.html', {'work': work})
 
 @login_required
 @company_required
@@ -42,7 +42,7 @@ def work_edit(request, work_id):
             return redirect(work_detail, work_id=work_id)
     else:
         form = WorkForm(instance=work)
-    return render(request, 'works/edit.html', {'form': form})
+    return render(request, 'work/edit.html', {'form': form})
 
 @login_required
 @company_required
