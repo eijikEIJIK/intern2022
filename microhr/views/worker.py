@@ -3,8 +3,31 @@ from django.http.response import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from microhr.models import Work
-from microhr.forms import WorkForm
+from microhr.forms import WorkForm, WorkerProfileForm
 from microhr.decorators import worker_required
+
+@login_required
+@worker_required
+def resume(request):
+    # if request.method == 'POST':        
+    #     form = WorkForm(request.POST, instance=work)
+    #     if form.is_valid():
+    #         work = form.save()
+    #         work.save()
+    #         return redirect(work_detail, work_id=work_id)
+    # else:
+    #    form = WorkForm(instance=work)
+
+    if request.method == 'POST':
+        form = WorkerProfileForm(request.POST, instance=request.user.workerprofile)
+        if form.is_valid():
+            worker_profile = form.save()
+            worker_profile.save()
+            return redirect('top')
+    else:
+        form = WorkerProfileForm(instance=request.user.workerprofile)
+    return render(request, 'resume/edit.html', {'form': form})
+
 
 @login_required
 @worker_required
@@ -20,3 +43,4 @@ def apply(request, work_id):
     # 本当はこんな感じになるような気がする
     # return render(request, 'works/apply.html', {'form': form})
     return HttpResponse("apply work")
+

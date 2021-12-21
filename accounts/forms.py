@@ -31,10 +31,17 @@ class WorkerSignUpForm(UserCreationForm):
             'username': 'ID'
         }
 
+    @transaction.atomic
     def save(self):
         user = super().save(commit=False)
         user.is_worker = True
         user.is_company = False
         user.save()
+        worker_profile = WorkerProfile.objects.create(
+            user=user,
+            resume='',
+            self_pr=''
+        )
+        worker_profile.save() 
         return user
 

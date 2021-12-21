@@ -19,7 +19,8 @@ from microhr.views.company import top
 
 urlpatterns = [
     path('', top, name='top'),
-    path('work/', include('microhr.urls')),
+    path('work/', include('microhr.urls.work')),
+    path('resume/', include('microhr.urls.resume')),
     path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
 ]

@@ -12,4 +12,5 @@ class User(AbstractUser):
 
 class WorkerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    resume = models.TextField()
+    resume = models.TextField(default='')
+    self_pr = models.CharField(max_length=255, default='')

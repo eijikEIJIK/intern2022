@@ -18,7 +18,7 @@
                 <a href="#" class="navbar-brand">選考</a>
                 {% endif %}
                 {% if user.is_authenticated and user.is_worker %}
-                <a href="/" class="navbar-brand">履歴書登録</a>
+                <a href="{% url 'resume' %}" class="navbar-brand">履歴書編集</a>
                 <a href="/" class="navbar-brand">応募一覧</a>
                 {% endif %}
 

@@ -1,7 +1,6 @@
 from django.urls import path
 
-from microhr import views
-from .views import company, worker
+from microhr.views import company, worker
 
 
 urlpatterns = [
