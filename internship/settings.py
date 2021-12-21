@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
  
     'microhr.apps.MicrohrConfig',   
-    'django_bootstrap5',
     'accounts.apps.AccountsConfig',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
