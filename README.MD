@@ -4,7 +4,7 @@
 小さな求人サービスを作っていたけれど、開発者が抜けてしまった。後を引き継いで、できてない機能を作ろう！
 
 ## できてる機能
-![ユースケース図](./documents/microhr-usecase.jpg | width=100)
+![ユースケース図](documents/microhr-usecase.jpg?raw=true | width=100)
 ### 共通
 ### 企業向け
 ### 求職者向け
