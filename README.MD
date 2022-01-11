@@ -72,8 +72,15 @@
 - あっという間にできあがってしまい、時間が大幅に余るようであれば、求人サイトを作り続けてきた先輩社員と相談して、「求人サイトに足らないと思う機能」を作り足してみて欲しい。
 
 ### 環境構築
-1. このレポジトリを自分用にforkする。
-2. forkしたレポジトリを各自のPCにcloneして、まずそれを手元で動かせる環境を作る。
+1. `en-japan-internship/internship` レポジトリを自分用にcloneしてください。読み取る権限を設定してあります。
+2. `en-japan-internship/internship-[卒業年度]-[githubアカウント名]` でレポジトリを作成してあります。そこを自分が開発するためのレポジトリとして使ってください。こんな感じでpushすることになるはずです。
+    ```
+    $ git remote add myrepo git@github.com:en-japan-internship/internship-[卒業年度]-[githubアカウント名].git
+    $ git branch -M main
+    $ git push -u myrepo main
+    ```
+
+3. まずcloneしてきたコードを手元で動かせる環境を作る。
     - pythonは3.9を推奨しています。自身のPCに入っていて、研究などに使っているPythonが異なるバージョンの場合は、pyenv や virtual envなどを上手く使って干渉しないようにしてください。
     - `manage.py`があるディレクトリで、以下のコマンドを順に実行すれば、http://localhost:8000/ として立ち上がるはず。
     ```
