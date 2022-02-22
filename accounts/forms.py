@@ -9,7 +9,7 @@ class CompanySignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('name', 'username')
-        labels = { 
+        labels = {
             'name': '会社名',
             'username': 'ID'
         }
@@ -26,7 +26,7 @@ class WorkerSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('name', 'username', )
-        labels = { 
+        labels = {
             'name': '氏名',
             'username': 'ID'
         }
@@ -42,6 +42,6 @@ class WorkerSignUpForm(UserCreationForm):
             resume='',
             self_pr=''
         )
-        worker_profile.save() 
+        worker_profile.save()
         return user
 

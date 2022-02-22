@@ -30,9 +30,9 @@ def apply(request, work_id):
         pass
     else:
         # それ以外の時は多分ここに何かを書かなければいけない
-        # form = ApplyForm()     
+        # form = ApplyForm()
         pass
-    
+
     # 本当はこんな感じになるような気がする
     # return render(request, 'work/apply.html', {'form': form})
     return HttpResponse("apply work")

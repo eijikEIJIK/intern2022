@@ -5,7 +5,7 @@ from django.core.exceptions import PermissionDenied
 
 def worker_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
     """Decorator for views that checks that the logged in user is a worker."""
-    
+
     def check(user):
         if user.is_active and user.is_worker:
             return True

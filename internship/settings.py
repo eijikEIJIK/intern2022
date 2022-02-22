@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
- 
-    'microhr.apps.MicrohrConfig',   
+
+    'microhr.apps.MicrohrConfig',
     'accounts.apps.AccountsConfig',
     'django_bootstrap5',
 ]
