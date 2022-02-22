@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from microhr.forms import WorkerProfileForm
 from microhr.decorators import worker_required
+from logging import getLogger
+logger = getLogger(__name__)
 
 
 @login_required
@@ -26,6 +28,7 @@ def resume(request):
 @worker_required
 def apply(request, work_id):
     """求人へ応募する（未実装）"""
+    logger.warn("unimplemented")
 
     # そもそもこのPOSTかGETの条件分岐を毎回描かないといけないのはどうにかならないのか？
     # デコレーターとかを上手く使えないのか…？

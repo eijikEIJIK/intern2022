@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from microhr.models import Work
 from microhr.forms import WorkForm
 from microhr.decorators import company_required
+from logging import getLogger
+logger = getLogger(__name__)
 
 
 @login_required
@@ -25,6 +27,7 @@ def work_new(request):
 
 def work_detail(request, work_id):
     """求人を詳細表示する"""
+    logger.debug("show work detail")
     work = get_object_or_404(Work, pk=work_id)
     return render(request, 'work/detail.html', {'work': work})
 
