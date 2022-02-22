@@ -27,6 +27,8 @@ def resume(request):
 def apply(request, work_id):
     """求人へ応募する（未実装）"""
 
+    # そもそもこのPOSTかGETの条件分岐を毎回描かないといけないのはどうにかならないのか？
+    # デコレーターとかを上手く使えないのか…？
     if request.method == 'POST':
         # 多分ここに応募URLにPOSTされたときの処理を書かないといけない
         pass
