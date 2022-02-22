@@ -8,7 +8,7 @@ class User(AbstractUser):
     is_company = models.BooleanField(default=False)
     is_worker = models.BooleanField(default=False)
     def __str__(self):
-        return self.text
+        return self.name
 
 class WorkerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
