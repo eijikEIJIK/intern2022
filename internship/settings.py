@@ -136,3 +136,26 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 NUMBER_GROUPING = 3
 
 AUTH_USER_MODEL = 'accounts.User'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[%(asctime)s] (%(levelname)s: %(name)s L.%(lineno)d) %(message)s'
+        },
+        'simple': {
+            'format': '%(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
