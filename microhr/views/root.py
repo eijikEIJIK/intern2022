@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from microhr.models import Work
 
+
 def home(request):
     """HOME"""
 

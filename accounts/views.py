@@ -18,6 +18,7 @@ from .forms import WorkerSignUpForm, CompanySignUpForm
 class SignUpView(TemplateView):
     template_name = 'accounts/signup.html'
 
+
 class WorkerSignUpView(CreateView):
     model = User
     form_class = WorkerSignUpForm

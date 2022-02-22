@@ -3,6 +3,7 @@ from django import forms
 from microhr.models import Work
 from accounts.models import WorkerProfile
 
+
 class WorkForm(forms.ModelForm):
     class Meta:
         model = Work
@@ -13,6 +14,7 @@ class WorkForm(forms.ModelForm):
             'salary_max': '給与上限(万円)',
             'text': '委細',
         }
+
 
 class WorkerProfileForm(forms.ModelForm):
     class Meta:

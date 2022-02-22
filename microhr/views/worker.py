@@ -4,13 +4,15 @@ from django.http import HttpResponse
 from microhr.forms import WorkerProfileForm
 from microhr.decorators import worker_required
 
+
 @login_required
 @worker_required
 def resume(request):
     """履歴書表示(GET)・編集(POST)"""
 
     if request.method == 'POST':
-        form = WorkerProfileForm(request.POST, instance=request.user.workerprofile)
+        form = WorkerProfileForm(request.POST,
+                                 instance=request.user.workerprofile)
         if form.is_valid():
             worker_profile = form.save()
             worker_profile.save()
@@ -36,4 +38,3 @@ def apply(request, work_id):
     # 本当はこんな感じになるような気がする
     # return render(request, 'work/apply.html', {'form': form})
     return HttpResponse("apply work")
-

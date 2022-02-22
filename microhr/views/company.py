@@ -6,6 +6,7 @@ from microhr.models import Work
 from microhr.forms import WorkForm
 from microhr.decorators import company_required
 
+
 @login_required
 @company_required
 def work_new(request):
@@ -21,10 +22,12 @@ def work_new(request):
         form = WorkForm()
     return render(request, 'work/new.html', {'form': form})
 
+
 def work_detail(request, work_id):
     """求人を詳細表示する"""
     work = get_object_or_404(Work, pk=work_id)
     return render(request, 'work/detail.html', {'work': work})
+
 
 @login_required
 @company_required
@@ -43,6 +46,7 @@ def work_edit(request, work_id):
     else:
         form = WorkForm(instance=work)
     return render(request, 'work/edit.html', {'form': form})
+
 
 @login_required
 @company_required

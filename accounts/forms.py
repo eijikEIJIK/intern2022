@@ -5,6 +5,7 @@ from django.forms.utils import ValidationError
 
 from .models import User, WorkerProfile
 
+
 class CompanySignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
@@ -21,6 +22,7 @@ class CompanySignUpForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
 
 class WorkerSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -44,4 +46,3 @@ class WorkerSignUpForm(UserCreationForm):
         )
         worker_profile.save()
         return user
-

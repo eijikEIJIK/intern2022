@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import user_passes_test
 
 from django.core.exceptions import PermissionDenied
 
+
 def worker_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
     """Decorator for views that checks that the logged in user is a worker."""
 
@@ -35,4 +36,3 @@ def company_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, log
     if function:
         return actual_decorator(function)
     return actual_decorator
-
