@@ -9,7 +9,7 @@ from microhr.decorators import company_required
 @login_required
 @company_required
 def work_new(request):
-    """新規の求人を削除する"""
+    """新規の求人を登録する"""
     if request.method == 'POST':
         form = WorkForm(request.POST)
         if form.is_valid():
@@ -18,7 +18,7 @@ def work_new(request):
             work.save()
             return redirect(work_detail, work_id=work.pk)
     else:
-        form = WorkForm()     
+        form = WorkForm()
     return render(request, 'work/new.html', {'form': form})
 
 def work_detail(request, work_id):
@@ -34,7 +34,7 @@ def work_edit(request, work_id):
     if work.company_id != request.user.id:
         return HttpResponseForbidden("この求人は編集できません")
 
-    if request.method == 'POST':        
+    if request.method == 'POST':
         form = WorkForm(request.POST, instance=work)
         if form.is_valid():
             work = form.save()
