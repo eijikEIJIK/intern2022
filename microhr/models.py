@@ -17,3 +17,12 @@ class Work(models.Model):
 
     def __str__(self):
         return self.title
+
+class Apply(models.Model):
+    user= models.ForeignKey(settings.AUTH_USER_MODEL,
+                                verbose_name='応募者',
+                                on_delete=models.CASCADE)
+    work= models.ForeignKey(Work,
+                                verbose_name='求人',
+                                on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
