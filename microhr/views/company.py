@@ -61,12 +61,5 @@ def work_delete(request, work_id):
 
     if request.method == 'POST':
         work.delete()
-        """ form = WorkForm(request.POST, instance=work)
-        if form.is_valid():
-            work = form.save()
-            work.save()
-            return redirect(work_detail, work_id=work_id) """
-    """ else:
-        form = WorkForm(instance=work)  """
 
     return redirect('/')
