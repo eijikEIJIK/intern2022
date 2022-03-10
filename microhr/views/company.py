@@ -55,4 +55,11 @@ def work_edit(request, work_id):
 @company_required
 def work_delete(request, work_id):
     """求人を削除する（未実装）"""
-    return HttpResponse("delete work")
+    work = get_object_or_404(Work, pk=work_id)
+    if work.company_id != request.user.id:
+        return HttpResponseForbidden("この求人は削除できません")
+
+    if request.method == 'POST':
+        work.delete()
+
+    return redirect('/')
