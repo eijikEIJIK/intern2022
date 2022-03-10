@@ -24,6 +24,7 @@ class Application(models.Model):
                                 on_delete=models.CASCADE)
     work= models.ForeignKey(Work,
                                 verbose_name='求人',
-                                on_delete=models.SET("現在この求人は募集されていません"))
+                                on_delete=models.SET_NULL,
+                                null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
