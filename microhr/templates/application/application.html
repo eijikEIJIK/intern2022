@@ -11,7 +11,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>求人ID</th>
+            <th>企業名</th>
             <th>仕事内容</th>
             <th>合否</th>
         </tr>
@@ -19,7 +19,7 @@
     <tbody>
     {% for application in applications %}
         <tr>
-            <td>{{ application.id }}</td>
+            <td>{{ application.work.company }}</td>
             <td>{{ application.work }}</td>
             <td>{{ application.is_passed }}</td>
         </tr>
