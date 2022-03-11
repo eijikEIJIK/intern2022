@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
@@ -39,7 +40,8 @@ def apply(request, work_id):
     if request.method == 'POST':
         Application.objects.create(
             work=work,
-            user=user)
+            user=user,
+            pass_or_fail=NULL)
     else:
         # それ以外の時は多分ここに何かを書かなければいけない
         # form = ApplyForm()
