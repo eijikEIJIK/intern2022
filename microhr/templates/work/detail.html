@@ -39,7 +39,10 @@
     </form>
     
     {% elif not user.is_company %}
-    <a class="btn btn-primary">応募する</a>
+    <form action="{% url 'work_apply' work.id %}" method="POST">
+        {% csrf_token %}
+        <input class="btn btn-primary" type="submit" value="応募する">
+    </form>
     {% endif %}
 </div>
 {% endblock %}
