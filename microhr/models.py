@@ -1,3 +1,5 @@
+from asyncio.windows_events import NULL
+from email.policy import default
 from django.conf import settings
 from django.db import models
 
@@ -26,5 +28,15 @@ class Application(models.Model):
                                 verbose_name='求人',
                                 on_delete=models.SET_NULL,
                                 null=True)
+    is_passed=models.BooleanField(verbose_name='合否',
+                                            null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(
+                fields=["user","work"],
+                name="application_unique"
+            ),
+        ]
