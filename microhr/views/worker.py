@@ -1,7 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
 from microhr.forms import WorkerProfileForm
+from microhr.models import Application,Work
+from accounts.models import User
 from microhr.decorators import worker_required
 from logging import getLogger
 logger = getLogger(__name__)
@@ -32,9 +34,12 @@ def apply(request, work_id):
 
     # そもそもこのPOSTかGETの条件分岐を毎回描かないといけないのはどうにかならないのか？
     # デコレーターとかを上手く使えないのか…？
+    user = get_object_or_404(User, pk=request.user.id)
+    work = get_object_or_404(Work, pk=work_id)
     if request.method == 'POST':
-        # 多分ここに応募URLにPOSTされたときの処理を書かないといけない
-        pass
+        Application.objects.create(
+            work=work,
+            user=user)
     else:
         # それ以外の時は多分ここに何かを書かなければいけない
         # form = ApplyForm()
@@ -42,4 +47,12 @@ def apply(request, work_id):
 
     # 本当はこんな感じになるような気がする
     # return render(request, 'work/apply.html', {'form': form})
-    return HttpResponse("apply work")
+    return redirect('/work/application')
+
+
+@login_required
+@worker_required
+def show_application(request):
+    user = get_object_or_404(User, pk=request.user.id)
+    applications=Application.objects.filter(user=user)
+    return render(request, 'application/application.html',{'applications':applications})
