@@ -2,7 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
-from microhr.models import Work
+from microhr.models import Work,Application
+from accounts.models import User
 from microhr.forms import WorkForm
 from microhr.decorators import company_required
 from logging import getLogger
@@ -63,3 +64,14 @@ def work_delete(request, work_id):
         work.delete()
 
     return redirect('/')
+
+@login_required
+@company_required
+def work_applicant(request):
+    user = get_object_or_404(User, pk=request.user.id)
+    works_id=Work.objects.values_list('id').filter(company=request.user.id)
+    applicants=Work.objects.none()
+    for i in works_id:
+        work_id=i[0]
+        applicants=applicants.union(Application.objects.filter(work=work_id))
+    return render(request, 'work/applicant.html',{'applicants': applicants})

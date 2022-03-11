@@ -29,7 +29,7 @@ def resume(request):
 @login_required
 @worker_required
 def apply(request, work_id):
-    """求人へ応募する（未実装）"""
+    """求人へ応募する（実装中）"""
     logger.warn("unimplemented")
 
     # そもそもこのPOSTかGETの条件分岐を毎回描かないといけないのはどうにかならないのか？
