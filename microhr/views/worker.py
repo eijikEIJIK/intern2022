@@ -41,7 +41,7 @@ def apply(request, work_id):
         Application.objects.create(
             work=work,
             user=user,
-            pass_or_fail=NULL)
+            is_passed=None)
     else:
         # それ以外の時は多分ここに何かを書かなければいけない
         # form = ApplyForm()

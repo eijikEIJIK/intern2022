@@ -26,10 +26,10 @@ class Application(models.Model):
                                 on_delete=models.CASCADE)
     work= models.ForeignKey(Work,
                                 verbose_name='求人',
-                                on_delete=models.SET("募集終了"))
-    pass_or_fail=models.BooleanField(verbose_name='合否',
-                                            null=True,
-                                            default=NULL)
+                                on_delete=models.SET_NULL,
+                                null=True)
+    is_passed=models.BooleanField(verbose_name='合否',
+                                            null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
