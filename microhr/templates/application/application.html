@@ -19,8 +19,8 @@
     <tbody>
     {% for application in applications %}
         <tr>
-            <td>{{ application.work.company }}</td>
-            <td>{{ application.work }}</td>
+            <td>{{ application.work.company.name }}</td>
+            <td>{{ application.work.title }}</td>
             <td>{{ application.is_passed }}</td>
         </tr>
     {% endfor %}

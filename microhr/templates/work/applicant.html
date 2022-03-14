@@ -17,8 +17,8 @@
     <tbody>
     {% for applicant in applicants %}
         <tr>
-            <td>{{ applicant.work}}</td>
-            <td>{{ applicant.user}}</td>
+            <td>{{ applicant.work.title}}</td>
+            <td>{{ applicant.user.name}}</td>
             <td>
                 <a class="col-6 btn btn-primary" href="#">評価を入力</a>
             </td>
