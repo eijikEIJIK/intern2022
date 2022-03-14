@@ -6,27 +6,27 @@
     <h1 class="title">microhr</h1>
     <p class="subtitle">最小限のコードで採用を！</p>
 </div>
-<h1>応募状況</h1>
-{% if applications %}
+{% if applicants %}
 <table class="table">
     <thead>
         <tr>
-            <th>企業名</th>
             <th>仕事内容</th>
-            <th>合否</th>
+            <th>応募者名</th>
         </tr>
     </thead>
     <tbody>
-    {% for application in applications %}
+    {% for applicant in applicants %}
         <tr>
-            <td>{{ application.work.company.name }}</td>
-            <td>{{ application.work.title }}</td>
-            <td>{{ application.is_passed }}</td>
+            <td>{{ applicant.work.title}}</td>
+            <td>{{ applicant.user.name}}</td>
+            <td>
+                <a class="col-6 btn btn-primary" href="#">評価を入力</a>
+            </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
 {% else %}
-まだ応募していません。
+応募者はいません。
 {% endif%}
 {% endblock %}

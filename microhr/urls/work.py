@@ -8,6 +8,7 @@ urlpatterns = [
     path('<int:work_id>/', company.work_detail, name='work_detail'),
     path('<int:work_id>/edit', company.work_edit, name='work_edit'),
     path('<int:work_id>/delete', company.work_delete, name="work_delete"),
+    path('applicant/', company.work_applicant, name="work_applicant"),
 
     path('<int:work_id>/apply', worker.apply, name="work_apply"),
     path('application/', worker.show_application, name="work_show_application"),
