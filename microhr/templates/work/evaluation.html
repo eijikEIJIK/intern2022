@@ -7,6 +7,7 @@
     <h1 class="title">microhr</h1>
     <p class="subtitle">最小限のコードで採用を！</p>
 </div>
+<h1>評価</h1>
 <table class="table">
     <tr>
         <td>仕事内容</td>
@@ -30,6 +31,14 @@
     </tr>
     
 </table>
-<h2>評価</h2>
-<button>合格</button><button>不合格</button>
+<div class="row align-items-end">
+    <form class="col-3" action="{% url 'work_pass' application.id %}" method="POST">
+        {% csrf_token %}
+        <input class="col-12 align-self-center btn btn-primary" type="submit" value="合格">
+    </form>
+    <form class="col-3" action="{% url 'work_fail' application.id %}" method="POST">
+        {% csrf_token %}
+        <input class="col-12 align-self-center btn btn-primary" type="submit" value="不合格">
+    </form>
+</div>
 {% endblock %}

@@ -88,3 +88,25 @@ def work_evaluate(request, applicant_id):
     print(applicant)
     return render(request, 'work/evaluation.html',{'work':work,'application': application,'applicant': applicant,'profile':profile})
  
+
+@login_required
+@company_required
+def work_pass(request, applicant_id):
+    if request.method == 'POST':
+        user = get_object_or_404(User, pk=request.user.id)
+        application=Application.objects.get(id=applicant_id)
+        application.is_passed=True
+        application.save()
+
+    return redirect('/')
+
+@login_required
+@company_required
+def work_fail(request, applicant_id):
+    if request.method == 'POST':
+        user = get_object_or_404(User, pk=request.user.id)
+        application=Application.objects.get(id=applicant_id)
+        application.is_passed=False
+        application.save()
+        
+    return redirect('/')

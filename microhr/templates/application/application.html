@@ -19,9 +19,25 @@
     <tbody>
     {% for application in applications %}
         <tr>
-            <td>{{ application.work.company.name }}</td>
+            <td>
+                {% if application.work %}
+                    {{ application.work.company.name }}
+                {% else %}
+                    募集終了
+                {% endif%}
+            </td>
             <td>{{ application.work.title }}</td>
-            <td>{{ application.is_passed }}</td>
+            <td>
+                {% if not application.work %}
+                    -
+                {% elif application.is_passed == None %}
+                    しばらくおまちください
+                {% elif application.is_passed == True %}
+                    合格
+                {% else %}
+                    不合格
+                {% endif%}
+            </td>
         </tr>
     {% endfor %}
     </tbody>
