@@ -5,7 +5,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from microhr.models import Work,Application
 from accounts.models import User
-from microhr.forms import WorkForm
+from accounts.models import WorkerProfile
+from microhr.forms import WorkForm, WorkerProfileForm
 from microhr.decorators import company_required
 from logging import getLogger
 from django.conf import settings
@@ -74,4 +75,16 @@ def work_applicant(request):
     works=[i['id'] for i in user.work_set.values('id')]
     applicants=Application.objects.select_related('work').exclude(work=None).filter(work_id__in=works)
     return render(request, 'work/applicant.html',{'applicants': applicants})
+
+@login_required
+@company_required
+def work_evaluate(request, applicant_id):
+    user = get_object_or_404(User, pk=request.user.id)
+    application=Application.objects.get(id=applicant_id)
+    work=Work.objects.get(id=application.work.id)
+    applicant=User.objects.get(id=application.user.id)
+    profile=WorkerProfile.objects.get(user=applicant)
+    print(application)
+    print(applicant)
+    return render(request, 'work/evaluation.html',{'work':work,'application': application,'applicant': applicant,'profile':profile})
  

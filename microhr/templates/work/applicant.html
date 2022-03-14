@@ -20,7 +20,7 @@
             <td>{{ applicant.work.title}}</td>
             <td>{{ applicant.user.name}}</td>
             <td>
-                <a class="col-6 btn btn-primary" href="#">評価を入力</a>
+                <a class="col-6 btn btn-primary" href="{% url 'work_evaluate' applicant.id %}">評価を入力</a>
             </td>
         </tr>
     {% endfor %}

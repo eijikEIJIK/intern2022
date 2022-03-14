@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load humanize %}
+
+{% block main %}
+<div class="welcome">
+    <h1 class="title">microhr</h1>
+    <p class="subtitle">最小限のコードで採用を！</p>
+</div>
+<table class="table">
+    <tr>
+        <td>仕事内容</td>
+        <td>{{ work.title }}</td>
+    </tr>
+    <tr>
+        <td>応募日時</td>
+        <td>{{ application.created_at }}</td>
+    </tr>
+    <tr>
+        <td>応募者氏名</td>
+        <td>{{ applicant.name }}</td>
+    </tr>
+    <tr>
+        <td>履歴書</td>
+        <td>{{ Profile.resume }}</td>
+    </tr>
+    <tr>
+        <td>自己PR</td>
+        <td>{{ Profile.self_pr }}</td>
+    </tr>
+    
+</table>
+<h2>評価</h2>
+<button>合格</button><button>不合格</button>
+{% endblock %}
