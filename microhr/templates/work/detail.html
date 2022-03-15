@@ -57,10 +57,27 @@
     </div>
     
     {% elif not user.is_company %}
-    <form action="{% url 'work_apply' work.id %}" method="POST">
-        {% csrf_token %}
-        <input class="btn btn-primary" type="submit" value="応募する">
-    </form>
+    <!-- Button trigger modal -->
+    <button type="button" class="col-2 btn btn-primary" data-toggle="modal" data-target="#deletework">
+        応募する
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="deletework" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body">
+            こちらの求人に応募します。よろしいですか？
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <form action="{% url 'work_apply' work.id %}" method="POST">
+                {% csrf_token %}
+                <input class="btn btn-primary" type="submit" value="応募する">
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
     {% endif %}
 </div>
 {% endblock %}
