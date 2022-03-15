@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load humanize %}
+
+{% block main %}
+<div class="welcome">
+    <h1 class="title">microhr</h1>
+    <p class="subtitle">最小限のコードで採用を！</p>
+</div>
+<h1>評価</h1>
+<table class="table">
+    <tr>
+        <td>仕事内容</td>
+        <td>{{ work.title }}</td>
+    </tr>
+    <tr>
+        <td>応募日時</td>
+        <td>{{ application.created_at }}</td>
+    </tr>
+    <tr>
+        <td>応募者氏名</td>
+        <td>{{ applicant.name }}</td>
+    </tr>
+    <tr>
+        <td>履歴書</td>
+        <td>{{ applicant.workerprofile.resume }}</td>
+    </tr>
+    <tr>
+        <td>自己PR</td>
+        <td>{{ applicant.workerprofile.self_pr }}</td>
+    </tr>
+    
+</table>
+<div class="row align-items-end">
+    <form class="col-3" action="{% url 'work_evaluate' application.id %}" method="POST">
+        {% csrf_token %}
+        <input class="col-12 align-self-center btn btn-primary" type="submit" name="evaluation" value="合格">
+    </form>
+    <form class="col-3" action="{% url 'work_evaluate' application.id %}" method="POST">
+        {% csrf_token %}
+        <input class="col-12 align-self-center btn btn-primary" type="submit" name="evaluation" value="不合格">
+    </form>
+</div>
+{% endblock %}

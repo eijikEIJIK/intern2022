@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block main %}
+<div class="welcome">
+    <h1 class="title">microhr</h1>
+    <p class="subtitle">最小限のコードで採用を！</p>
+</div>
+<h1>応募状況</h1>
+{% if applications %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>企業名</th>
+            <th>仕事内容</th>
+            <th>合否</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for application in applications %}
+        <tr>
+            <td>
+                {% if application.work %}
+                    {{ application.work.company.name }}
+                {% else %}
+                    募集終了
+                {% endif%}
+            </td>
+            <td>{{ application.work.title }}</td>
+            <td>
+                {% if not application.work %}
+                    -
+                {% elif application.is_passed == None %}
+                    しばらくおまちください
+                {% elif application.is_passed %}
+                    合格
+                {% else %}
+                    不合格
+                {% endif%}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+まだ応募していません。
+{% endif%}
+{% endblock %}

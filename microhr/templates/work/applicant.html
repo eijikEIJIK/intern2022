@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block main %}
+<div class="welcome">
+    <h1 class="title">microhr</h1>
+    <p class="subtitle">最小限のコードで採用を！</p>
+</div>
+{% if applications %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>仕事内容</th>
+            <th>応募者名</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for application in applications %}
+        <tr>
+            <td>{{ application.work.title}}</td>
+            <td>{{ application.user.name}}</td>
+            <td>
+                <a class="col-6 btn btn-primary" href="{% url 'work_evaluate' application.id %}">評価を入力</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+応募者はいません。
+{% endif%}
+{% endblock %}
