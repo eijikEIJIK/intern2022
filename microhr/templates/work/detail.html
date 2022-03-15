@@ -33,50 +33,43 @@
     {% if user.is_authenticated and user.is_company and user == work.company %}
     <a type="button" class="col-2 btn btn-primary" href="{% url 'work_edit' work.id %}">編集する</a>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="col-2 btn btn-primary" data-toggle="modal" data-target="#deletework">
-        削除する
-    </button>
+    <button type="button" class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">削除する</button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="deletework" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-body">
-            本当に削除しますか？
+        本当に削除しますか？
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <form action="{% url 'work_delete' work.id %}" method="POST">
-                {% csrf_token %}
-                <input class="col btn btn-primary" type="submit" value="削除する">
-            </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="{% url 'work_delete' work.id %}" method="POST">
+            {% csrf_token %}
+            <input class="col btn btn-primary" type="submit" value="削除する">
+        </form>
         </div>
         </div>
-    </div>
+        </div>
     </div>
     
     {% elif not user.is_company %}
-    <!-- Button trigger modal -->
-    <button type="button" class="col-2 btn btn-primary" data-toggle="modal" data-target="#deletework">
-        応募する
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="deletework" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <button type="button" class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">応募する</button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-body">
-            こちらの求人に応募します。よろしいですか？
+        こちらの求人に応募します。よろしいですか？
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <form action="{% url 'work_apply' work.id %}" method="POST">
-                {% csrf_token %}
-                <input class="btn btn-primary" type="submit" value="応募する">
-            </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="{% url 'work_apply' work.id %}" method="POST">
+            {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="応募する">
+        </form>
         </div>
         </div>
-    </div>
+        </div>
     </div>
     {% endif %}
 </div>
