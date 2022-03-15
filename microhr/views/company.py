@@ -96,21 +96,4 @@ def work_evaluate(request, application_id):
         work=Work.objects.get(id=application.work.id)
         applicant=User.objects.get(id=application.user.id)
         return render(request, 'work/evaluation.html',{'work':work,'application': application,'applicant': applicant})
- 
-
-@login_required
-@company_required
-def work_evaluation(request, application_id):
-    
-    if request.method == 'POST':
-        eval=request.POST.get("evaluation")
-        application=Application.objects.get(id=application_id)
-        if eval=="合格":
-            application.is_passed=True
-            application.save()
-        elif eval=="不合格":
-            application.is_passed=False
-            application.save()
-
-    return redirect('/')
 
