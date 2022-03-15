@@ -29,35 +29,28 @@
     </tr>
 </table>
 
-<div class="row align-items-start">
+<div class="row align-items-center">
     {% if user.is_authenticated and user.is_company and user == work.company %}
-    <a class="col-1 btn btn-primary" href="{% url 'work_edit' work.id %}">編集する</a>
-    
-    <form class="col" action="{% url 'work_delete' work.id %}" method="POST">
-        {% csrf_token %}
-        <input class="col-1 btn btn-primary" type="submit" value="削除する">
-    </form>
+    <a type="button" class="col-2 btn btn-primary" href="{% url 'work_edit' work.id %}">編集する</a>
+
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
+    <button type="button" class="col-2 btn btn-primary" data-toggle="modal" data-target="#deletework">
+        削除する
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deletework" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
         <div class="modal-body">
-            ...
+            本当に削除しますか？
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <form action="{% url 'work_delete' work.id %}" method="POST">
+                {% csrf_token %}
+                <input class="col btn btn-primary" type="submit" value="削除する">
+            </form>
         </div>
         </div>
     </div>
