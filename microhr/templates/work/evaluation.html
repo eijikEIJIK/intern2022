@@ -23,22 +23,22 @@
     </tr>
     <tr>
         <td>履歴書</td>
-        <td>{{ Profile.resume }}</td>
+        <td>{{ applicant.workerprofile.resume }}</td>
     </tr>
     <tr>
         <td>自己PR</td>
-        <td>{{ Profile.self_pr }}</td>
+        <td>{{ applicant.workerprofile.self_pr }}</td>
     </tr>
     
 </table>
 <div class="row align-items-end">
-    <form class="col-3" action="{% url 'work_pass' application.id %}" method="POST">
+    <form class="col-3" action="{% url 'work_evaluation' application.id %}" method="POST">
         {% csrf_token %}
-        <input class="col-12 align-self-center btn btn-primary" type="submit" value="合格">
+        <input class="col-12 align-self-center btn btn-primary" type="submit" name="evaluation" value="合格">
     </form>
-    <form class="col-3" action="{% url 'work_fail' application.id %}" method="POST">
+    <form class="col-3" action="{% url 'work_evaluation' application.id %}" method="POST">
         {% csrf_token %}
-        <input class="col-12 align-self-center btn btn-primary" type="submit" value="不合格">
+        <input class="col-12 align-self-center btn btn-primary" type="submit" name="evaluation" value="不合格">
     </form>
 </div>
 {% endblock %}

@@ -9,10 +9,9 @@ urlpatterns = [
     path('<int:work_id>/edit', company.work_edit, name='work_edit'),
     path('<int:work_id>/delete', company.work_delete, name="work_delete"),
     path('applicant/', company.work_applicant, name="work_applicant"),
-    path('<int:applicant_id>/evaluate', company.work_evaluate, name="work_evaluate"),
-    path('<int:applicant_id>/evaluate/pass', company.work_pass, name="work_pass"),
-    path('<int:applicant_id>/evaluate/fail', company.work_fail, name="work_fail"),
-
+    path('<int:application_id>/evaluate', company.work_evaluate, name="work_evaluate"),
+    path('<int:application_id>/evaluate/evaluation', company.work_evaluation, name="work_evaluation"),
+    
     path('<int:work_id>/apply', worker.apply, name="work_apply"),
     path('application/', worker.show_application, name="work_show_application"),
 ]

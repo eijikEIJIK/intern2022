@@ -72,41 +72,32 @@ def work_delete(request, work_id):
 @company_required
 def work_applicant(request):
     user = get_object_or_404(User, pk=request.user.id)
-    works=[i['id'] for i in user.work_set.values('id')]
-    applicants=Application.objects.select_related('work').exclude(work=None).filter(work_id__in=works)
-    return render(request, 'work/applicant.html',{'applicants': applicants})
+    applications=Application.objects.select_related('work').exclude(work=None).filter(work__company_id=user.id)
+    return render(request, 'work/applicant.html',{'applications': applications})
 
 @login_required
 @company_required
-def work_evaluate(request, applicant_id):
+def work_evaluate(request, application_id):
     user = get_object_or_404(User, pk=request.user.id)
-    application=Application.objects.get(id=applicant_id)
+    application = get_object_or_404(Application, id=application_id)
     work=Work.objects.get(id=application.work.id)
     applicant=User.objects.get(id=application.user.id)
-    profile=WorkerProfile.objects.get(user=applicant)
-    print(application)
-    print(applicant)
-    return render(request, 'work/evaluation.html',{'work':work,'application': application,'applicant': applicant,'profile':profile})
+    return render(request, 'work/evaluation.html',{'work':work,'application': application,'applicant': applicant})
  
 
 @login_required
 @company_required
-def work_pass(request, applicant_id):
+def work_evaluation(request, application_id):
+    
     if request.method == 'POST':
-        user = get_object_or_404(User, pk=request.user.id)
-        application=Application.objects.get(id=applicant_id)
-        application.is_passed=True
-        application.save()
+        eval=request.POST.get("evaluation")
+        application=Application.objects.get(id=application_id)
+        if eval=="合格":
+            application.is_passed=True
+            application.save()
+        elif eval=="不合格":
+            application.is_passed=False
+            application.save()
 
     return redirect('/')
 
-@login_required
-@company_required
-def work_fail(request, applicant_id):
-    if request.method == 'POST':
-        user = get_object_or_404(User, pk=request.user.id)
-        application=Application.objects.get(id=applicant_id)
-        application.is_passed=False
-        application.save()
-        
-    return redirect('/')
