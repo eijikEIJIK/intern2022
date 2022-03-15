@@ -5,7 +5,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from microhr.models import Work,Application
 from accounts.models import User
-from microhr.forms import WorkForm
+from accounts.models import WorkerProfile
+from microhr.forms import WorkForm, WorkerProfileForm
 from microhr.decorators import company_required
 from logging import getLogger
 from django.conf import settings
@@ -71,7 +72,28 @@ def work_delete(request, work_id):
 @company_required
 def work_applicant(request):
     user = get_object_or_404(User, pk=request.user.id)
-    works=[i['id'] for i in user.work_set.values('id')]
-    applicants=Application.objects.select_related('work').exclude(work=None).filter(work_id__in=works)
-    return render(request, 'work/applicant.html',{'applicants': applicants})
- 
+    applications=Application.objects.select_related('work').exclude(work=None).filter(work__company_id=user.id)
+    return render(request, 'work/applicant.html',{'applications': applications})
+
+@login_required
+@company_required
+def work_evaluate(request, application_id):
+    user = get_object_or_404(User, pk=request.user.id)
+    if request.method == 'POST':
+        eval=request.POST.get("evaluation")
+        application=Application.objects.get(id=application_id)
+        
+        if eval=="合格":
+            application.is_passed=True
+            application.save()
+        elif eval=="不合格":
+            application.is_passed=False
+            application.save()
+        return redirect('/')
+
+    else:
+        application = get_object_or_404(Application, id=application_id)
+        work=Work.objects.get(id=application.work.id)
+        applicant=User.objects.get(id=application.user.id)
+        return render(request, 'work/evaluation.html',{'work':work,'application': application,'applicant': applicant})
+
