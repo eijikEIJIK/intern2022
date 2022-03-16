@@ -53,9 +53,13 @@
     </div>
     
     {% elif not user.is_company %}
-    <button type="button" class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">応募する</button>
+        {% if not is_already_applied %}
+        <button type="button" class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#application">応募する</button>
+        {% else %}
+        <button type="button" class="col-2 btn btn-primary">応募済み</button>
+        {% endif %}
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="application" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-body">
