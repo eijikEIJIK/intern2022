@@ -32,7 +32,23 @@ def work_detail(request, work_id):
     """求人を詳細表示する"""
     logger.debug("show work detail")
     work = get_object_or_404(Work, pk=work_id)
-    return render(request, 'work/detail.html', {'work': work})
+
+    if request.user.is_authenticated:
+        user = get_object_or_404(User, pk=request.user.id)
+        try:
+            application=Application.objects.get(work=work,user=user)
+        except:
+            application=False
+            
+        if application:
+            is_already_applied=True
+        else:
+            is_already_applied=False
+    else:
+        is_already_applied=False
+    print(is_already_applied)
+
+    return render(request, 'work/detail.html', {'work': work,'is_already_applied':is_already_applied})
 
 
 @login_required
